@@ -10,7 +10,7 @@ describe('date parser', function () {
     expect(dateParser.parse(input, format)).toEqual(date);
   }
 
-  describe('wih custom formats', function() {
+  describe('with custom formats', function() {
     it('should work correctly for `dd`, `MM`, `yyyy`', function() {
       expectParse('17.11.2013', 'dd.MM.yyyy', new Date(2013, 10, 17, 0));
       expectParse('31.12.2013', 'dd.MM.yyyy', new Date(2013, 11, 31, 0));
@@ -19,6 +19,7 @@ describe('date parser', function () {
       expectParse('10.01/1983', 'dd.MM/yyyy', new Date(1983, 0, 10, 0));
       expectParse('11-09-1980', 'MM-dd-yyyy', new Date(1980, 10, 9, 0));
       expectParse('2011/02/05', 'yyyy/MM/dd', new Date(2011, 1, 5, 0));
+      expectParse('05/02/2011', 'dd/MM/yyyy', new Date(2011, 1, 5, 0));
     });
 
     it('should work correctly for `yy`', function() {
@@ -27,6 +28,7 @@ describe('date parser', function () {
       expectParse('02/05/80', 'MM/dd/yy', new Date(2080, 1, 5, 0));
       expectParse('55/02/05', 'yy/MM/dd', new Date(2055, 1, 5, 0));
       expectParse('11-08-13', 'dd-MM-yy', new Date(2013, 7, 11, 0));
+      expectParse('11/08/13', 'dd/MM/yy', new Date(2013, 7, 11, 0));
     });
 
     it('should work correctly for `M`', function() {
@@ -60,6 +62,12 @@ describe('date parser', function () {
       expectParse('11-08-13', 'd-MM-yy', new Date(2013, 7, 11, 0));
     });
   });
+
+    describe('with an array of formats', function(){
+        it('should parse correctly if found an format', function(){
+            expectParse('1/2/14', ['dd/MM/yyyy', 'd/M/yy'], new Date(2014, 1, 1, 0));
+        })
+    });
 
   describe('wih predefined formats', function() {
     it('should work correctly for `shortDate`', function() {

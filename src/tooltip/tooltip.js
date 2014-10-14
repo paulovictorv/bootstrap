@@ -119,15 +119,34 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
             var triggers = getTriggers( undefined );
             var hasEnableExp = angular.isDefined(attrs[prefix+'Enable']);
 
-            var positionTooltip = function () {
+              var positionTooltip = function () {
+                  var ttPosition = $position.positionElements(element, tooltip, scope.tt_placement, appendToBody);
 
-              var ttPosition = $position.positionElements(element, tooltip, scope.tt_placement, appendToBody);
-              ttPosition.top += 'px';
-              ttPosition.left += 'px';
+                  if (isClose(ttPosition)) {
+                      ttPosition = $position.positionElements(element, tooltip, switchPlacement(scope.tt_placement), appendToBody);
+                  }
 
-              // Now set the calculated positioning.
-              tooltip.css( ttPosition );
-            };
+                  ttPosition.top += 'px';
+                  ttPosition.left += 'px';
+
+                  // Now set the calculated positioning.
+                  tooltip.css(ttPosition);
+
+                  function isClose(ttPosition){
+                      if ($window.innerWidth - ttPosition.left < element.width() + 200){
+                          return true;
+                      } else {
+                          return false;
+                      }
+                  }
+
+                  function switchPlacement(tt_placement){
+                      if (tt_placement === 'right'){
+                          scope.tt_placement = 'left';
+                          return 'left';
+                      }
+                  }
+              };
 
             // By default, the tooltip is not open.
             // TODO add ability to start tooltip opened

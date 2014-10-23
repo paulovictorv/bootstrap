@@ -133,7 +133,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
                   tooltip.css(ttPosition);
 
                   function isClose(ttPosition){
-                      if ($window.innerWidth - ttPosition.left < element.width() + 200){
+                      if ($window.innerWidth - ttPosition.left < element.width() + 350){
                           return true;
                       } else {
                           return false;

@@ -114,7 +114,7 @@ angular.module('ui.bootstrap.dateparser', [])
         this.parse = function(input, format) {
             if (angular.isArray(format)){
                 var date;
-                for (var formatIndex = 0; i < format.length; formatIndex++){
+                for (var formatIndex = 0; formatIndex < format.length; formatIndex++){
                     date = _parse(input, format[formatIndex]);
                     if (!angular.isUndefined(date)) {
                         return date;

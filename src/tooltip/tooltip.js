@@ -145,6 +145,8 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
                           scope.tt_placement = 'left';
                           return 'left';
                       }
+
+                      return tt_placement;
                   }
               };
 

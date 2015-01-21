@@ -133,7 +133,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
                   tooltip.css(ttPosition);
 
                   function isClose(ttPosition){
-                      if ($window.innerWidth - ttPosition.left < element.width() + 350){
+                      if ($window.innerWidth - ttPosition.left < element.width() + 450){
                           return true;
                       } else {
                           return false;
@@ -207,7 +207,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
               // Set the initial positioning.
               tooltip.css({ top: 0, left: 0, display: 'block' });
 
-              // Now we add it to the DOM because need some info about it. But it's not 
+              // Now we add it to the DOM because need some info about it. But it's not
               // visible yet anyway.
               if ( appendToBody ) {
                   $document.find( 'body' ).append( tooltip );
@@ -235,7 +235,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
               $timeout.cancel( popupTimeout );
               popupTimeout = null;
 
-              // And now we remove it from the DOM. However, if we have animation, we 
+              // And now we remove it from the DOM. However, if we have animation, we
               // need to wait for it to expire beforehand.
               // FIXME: this is a placeholder for a port of the transitions library.
               if ( scope.tt_animation ) {
